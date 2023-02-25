@@ -12,3 +12,5 @@
     $connection = mysqli_connect($host, $user, $pass, $db_name);
 
     return $connection;
+
+
