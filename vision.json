@@ -1,3 +1,0 @@
-$api_key = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX';
-$url = "https://vision.googleapis.com/v1/images:annotate?key=" . $api_key
-$detection_type = "TEXT_DETECTION";
