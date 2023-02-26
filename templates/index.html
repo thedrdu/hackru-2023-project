@@ -10,6 +10,10 @@
         {% if show_results %}
             {% if results_found %}
                 <span>Is this the right anime? -></span> <span style="color: blue">{{ title }}</span>
+                <form method="POST">
+                    <input type="hidden" name="title" value="{{ title }}">
+                    <input type="submit" value="Select Result">
+                </form>
             {% elif bad_request %}
                 <p style="color: red">Error: Bad Request.</p>
             {% else %}
