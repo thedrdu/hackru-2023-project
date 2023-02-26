@@ -18,7 +18,7 @@
     <link href="./signin.css" rel="stylesheet">
 
     <title>
-        PAS: Gene Disease Codes
+        HackRu
     </title>
 </head>
 
@@ -40,13 +40,14 @@
 
                                     <div class="form-outline mb-4">
                                         <label class="form-label" for="typePasswordX-2">Password</label>
-                                        <input name="pwd" type="password" id="typePasswordX-2" minlength="10" placeholder="Minimum 10 characters including atleast one number" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" class="form-control form-control-lg" />
+                                        <input name="pwd" type="password" id="typePasswordX-2" minlength="8" placeholder="Your password" class="form-control form-control-lg" />
                                     </div>
 
                                     <button class="btn btn-primary btn-lg btn-block" type="submit" name="submit">Sign-In</button>
                                 </form>
 
                                 <h6 class="pt-5"> Don't have an account? <a href="./signup.php"> Sign-Up </a> </h6>
+                               
                             </section>
 
                             <?php

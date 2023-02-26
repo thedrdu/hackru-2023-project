@@ -18,7 +18,7 @@
   <link href="./signup.css" rel="stylesheet">
 
   <title>
-    PAS: Gene Disease Codes
+  HackRu
   </title>
 </head>
 
@@ -32,32 +32,32 @@
             <div class="card-body p-4 text-center">
 
               <section>
-                <h3 class="mb-5">Welcome! Sign up</h3>
-                <div class="form-outline mb-1">
-                  <label class="form-label" for="typeEmailX-2">Email</label>
-                  <input name="user_email" type="email" id="typeEmailX-2" pattern=".+@scarletmail\.rutgers\.edu" placeholder="example@scarletmail.rutgers.edu" class="form-control form-control-lg" />
-                </div>
+                <form action = "signup.inc.php" method="post">
+                  <h3 class="mb-5">Welcome! Sign up</h3>
+                  <div class="form-outline mb-1">
+                    <label class="form-label" for="typeEmailX-2">Email</label>
+                    <input name="user_email" type="email" id="typeEmailX-2"  placeholder="example@gmail.com" class="form-control form-control-lg" />
+                  </div>
 
-                <div class="form-outline mb-4">
-                  <label class="form-label" for="typeEmailX-2">User Name (no spaces)</label>
-                  <input name="user_name" type="text" id="Name" pattern="/^\S*$/" placeholder="FlyingCat" class="form-control form-control-lg" />
-                </div>
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="typeEmailX-2">User Name (no spaces)</label>
+                    <input name="user_name" type="text" id="Name"  placeholder="FlyingCat" class="form-control form-control-lg" />
+                  </div>
 
-                <div class="form-outline mb-4">
-                  <label class="form-label" for="typePasswordX-2">Password</label>
-                  <input name="pwd" type="password" id="typePasswordX-2" minlength="10" placeholder=" Minimum 10 characters including atleast one number" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" class="form-control form-control-lg" />
-                </div>
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="typePasswordX-2">Password <br> (Minimum 8 characters at least one uppercase letter, one lowercase letter and one number)</label>
+                    <input name="pwd" type="password" id="typePasswordX-2" minlength="8" placeholder="Enter Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" class="form-control form-control-lg" />
+                  </div>
 
-                <div class="form-outline mb-4">
-                  <label class="form-label" for="typePasswordX-2">Repeat Password</label>
-                  <input name="pwd_repeat" type="password" id="typePasswordX-2" minlength="10" placeholder="Minimum 10 characters including atleast one number" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" class="form-control form-control-lg" />
-                </div>
-                <!-- Checkbox -->
-
-                <button class="btn btn-primary btn-lg btn-block" type="submit" name="submit">Sign-Up</button>
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="typePasswordX-2">Repeat Password</label>
+                    <input name="pwd_repeat" type="password" id="typePasswordX-2" minlength="8" placeholder="Enter Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" class="form-control form-control-lg" />
+                  </div>
+                  <!-- Checkbox -->
+                  <button class="btn btn-primary btn-lg btn-block" type="submit" name="submit">Sign-Up</button>
+      
+                  <h6 class="pt-5"> Already have an account? <a href="./signin.php"> Sign-In </a> </h6>
                 </form>
-
-                <h6 class="pt-5"> Already have an account? <a href="./signin.php"> Sign-In </a> </h6>
               </section>
 
               <?php

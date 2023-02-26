@@ -1,10 +1,12 @@
 <?php
 
-function signupInputEmpty($user_email, $user_name, $netid, $pwd, $pwdRepeat){
+require "./portalConn.php";
+
+function signupInputEmpty($user_email, $user_name, $pwd, $pwdRepeat){
 
     $testValue = null;
 
-    if ( empty($user_email) || empty($user_name)  || empty($pwd) || empty($pwdRepeat) || empty($netid)){
+    if ( empty($user_email) || empty($user_name)  || empty($pwd) || empty($pwdRepeat) ){
 
         $testValue = true;
 
@@ -18,11 +20,11 @@ function signupInputEmpty($user_email, $user_name, $netid, $pwd, $pwdRepeat){
 
 }
 
-function signinInputEmpty($user_email, $pwd, $netid){
+function signinInputEmpty($user_email, $pwd){
 
     $testValue = null;
 
-    if ( empty($user_email) || empty($pwd) || empty($netid)){
+    if ( empty($user_email) || empty($pwd) ){
 
         $testValue = true;
 
@@ -81,35 +83,11 @@ function existsEmail($connection, $user_email){
 
 }
 
-function validation($connection, $user_email){
 
-    $query = "SELECT * FROM users WHERE userEmail = ? AND validated = 1;";
 
-    $sql_stmt = mysqli_stmt_init($connection);
+function createUserLog($connection, $user_email, $user_name){
 
-    if ( !mysqli_stmt_prepare($sql_stmt, $query)){
-        header("location: ./signup.php?error=stmtFailed");
-        exit();
-    }
-
-    mysqli_stmt_bind_param($sql_stmt, "s", $user_email);
-    mysqli_stmt_execute($sql_stmt);
-
-    $resulting_data = mysqli_stmt_get_result($sql_stmt);
-
-    if ( $row = mysqli_fetch_assoc($resulting_data) ){
-        return $row;
-    } else {
-        return false;
-    }
-
-    mysqli_stmt_close($sql_stmt);
-
-}
-
-function createUserLog($connection, $netid, $user_email){
-
-    $query = "INSERT INTO userLog (userEmail, user_NETID) VALUES (?, ?);";
+    $query = "INSERT INTO userLog (userEmail, userName) VALUES (?, ?);";
 
     $stmt = mysqli_stmt_init($connection);
     if ( !mysqli_stmt_prepare($stmt, $query)){
@@ -118,13 +96,13 @@ function createUserLog($connection, $netid, $user_email){
     }
 
     
-    mysqli_stmt_bind_param($stmt, "ss", $user_email, $netid);
+    mysqli_stmt_bind_param($stmt, "ss", $user_email, $user_name);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 }
 
 
-function loginUser($connection, $user_email, $netid, $pwd){
+function loginUser($connection, $user_email, $user_name,  $pwd){
 
     $exist_email = existsEmail($connection, $user_email);
 
@@ -142,31 +120,20 @@ function loginUser($connection, $user_email, $netid, $pwd){
     } else if ( $checkedPWD === true ){
         session_start();
         $_SESSION["userEmail"] = $exist_email["userEmail"];
-        $checkValidation = validation($connection, $user_email);
 
-        if ( $checkValidation === false){
-            header("location: ./signin.php?error=notValidated");
-            exit();
-        } else {
-
-            createUserLog($connection, $netid, $user_email);
-
-            header("location: ../index.php");
-            exit();  
-        }
-
-      
+       
+        createUserLog($connection, $user_email, $user_name);
+        header("location: ../index.php");
+        exit();  
 
     }
-
 }
 
-function createAccount($connection, $user_email, $user_name, $netid, $pwd){
 
-    $return = null;
-    $resulting_data = null;
 
-    $query = "INSERT INTO users (NETID, userEmail, userPwd, userName) VALUES (?, ?, ?, ?);";
+function createAccount($connection, $user_email, $user_name, $pwd){
+
+    $query = "INSERT INTO users (userEmail, userName, userPwd) VALUES (?, ?, ?);";
 
     $stmt = mysqli_stmt_init($connection);
     if ( !mysqli_stmt_prepare($stmt, $query)){
@@ -177,7 +144,7 @@ function createAccount($connection, $user_email, $user_name, $netid, $pwd){
     
     $hashedPassword = password_hash($pwd, PASSWORD_DEFAULT);
 
-    mysqli_stmt_bind_param($stmt, "ssss", $netid, $user_email, $hashedPassword, $user_name);
+    mysqli_stmt_bind_param($stmt, "sss", $user_email,  $user_name, $hashedPassword);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: ./signup.php?error=none");

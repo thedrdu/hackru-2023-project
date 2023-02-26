@@ -1,10 +1,10 @@
 <?php
-
 if ( isset($_POST["submit"])){
     
 
     $user_email = $_POST["user_email"];
     $pwd = $_POST["pwd"];
+    $pwdRepeat = $_POST["pwd_repeat"];
     $user_name = $_POST["user_name"];
 
     require "./portalConn.php";
@@ -30,7 +30,9 @@ if ( isset($_POST["submit"])){
 
     }
 
-    loginUser($connection, $user_email, $user_name, $pwd);
+    createAccount($connection, $user_email, $user_name, $pwd);
     exit();
 
+} else {
+    echo "not working";
 }
