@@ -10,6 +10,10 @@
         {% if show_results %}
             {% if results_found %}
                 <span>Is this the right anime? -></span> <span style="color: blue">{{ title }}</span>
+                <form method="POST">
+                    <input type="hidden" name="title" value="{{ title }}">
+                    <input type="submit" value="Select Result">
+                </form>
             {% elif bad_request %}
                 <p style="color: red">Error: Bad Request.</p>
             {% else %}
@@ -19,21 +23,17 @@
     </div>
     <form method="POST">
         <input type="text" name="text">
-        <input type="submit" name="submit">
+        <input type="submit" name="submit" value="Search">
     </form>
-    
 </div>
 
-<footer>
+<footer style="font-family: Righteous">
     <div class="footer-links">
-        <a href="#">Link 1</a>
-        <a href="#">Link 2</a>
-        <a href="#">Link 3</a>
+        <a href="//github.com/thedrdu/hackru-2023-project">GitHub</a>
     </div>
     <div class="footer-text">
-        &copy; 2023 My Company. All rights reserved.
+        &copy; 2023 aniME! All rights reserved.
     </div>
 </footer>
   
-
 {% endblock content %}
