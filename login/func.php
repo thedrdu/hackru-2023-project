@@ -113,9 +113,9 @@ function loginUser($connection, $user_email, $pwd){
         session_start();
         $_SESSION["userEmail"] = $exist_email["userEmail"];
 
-       
+
         createUserLog($connection, $user_email, $pwd);
-        header("Location:  http://localhost:5001/AniMe");
+        header("Location:  http://localhost:5001/");
         exit();  
 
     }

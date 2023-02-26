@@ -1,8 +1,11 @@
 from flask import Flask, request, render_template
-from search import search
+from search import search, get_recommendations
 app = Flask(__name__, static_folder='static')
 
-@app.route("/AniMe")
+recommendations = []
+inputs = set()
+
+@app.route("/")
 def form():
     return render_template("index.html", show_results=False)
 
@@ -17,11 +20,16 @@ async def form_post():
             return render_template("index.html", title=f"\"{text}\"", show_results=True, results_found=False, bad_request=False)
         else: #Bad request
             return render_template("index.html", title=f"\"{text}\"", show_results=True, results_found=False, bad_request=True)
-    else:
+    elif "title" in request.form:
         title = request.form.get("title")
+        inputs.add(title)
         #add to the db at this point
-        # return render_template("index.html", show_results=False)
-        return 'Title received: {}'.format(title)
+        return render_template("index.html")
+        # return 'Title received: {}'.format(title)
+    else: #confirm
+        for anime in inputs:
+            recommendations.extend(await get_recommendations(anime))
+        return render_template("results.html", inputs=inputs, recommendations=recommendations)
 
 @app.route("/about")
 def main():
