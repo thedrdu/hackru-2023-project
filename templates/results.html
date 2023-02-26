@@ -1,12 +1,34 @@
-    <h2>Text inputs:</h2>
-    <ul>
-      {% for anime in inputs %}
-      <li>{{ anime }}</li>
-      {% endfor %}
-    </ul>
-    <ul style="padding-top: 50px">
-      {% for recommendation in recommendations %}
-      <li>{{ recommendation }}</li>
-      {% endfor %}
-    </ul>
     
+    
+    {% extends "base.html" %}
+{% block content %}
+<div style="padding-top: 20px;">
+    <div align="center" style="vertical-align: top;">
+        
+    </div>
+    <div align="center" style="font-family: 'Wild Words Roman'; font-size: 20px;">
+      <h2>Text inputs:</h2>
+      <ul>
+        {% for anime in inputs %}
+        <li>{{ anime }}</li>
+        {% endfor %}
+      </ul>
+      <ul style="padding-top: 50px">
+        {% for recommendation in recommendations %}
+        <li>{{ recommendation }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    
+</div>
+
+<footer style="font-family: Righteous">
+    <div class="footer-links">
+        <a href="//github.com/thedrdu/hackru-2023-project">GitHub</a>
+    </div>
+    <div class="footer-text">
+        &copy; 2023 aniME! All rights reserved.
+    </div>
+</footer>
+  
+{% endblock content %}
