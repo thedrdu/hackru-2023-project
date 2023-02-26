@@ -1,14 +1,11 @@
 import os
 from dotenv import load_dotenv
 import aiohttp
-import asyncio
 import ssl, certifi
-import sys
 
 load_dotenv()
 CLIENT_ID = os.getenv("CLIENT_ID")
 CLIENT_SECRET = os.getenv("CLIENT_SECRET")
-
 
 async def search(query: str):
     session = aiohttp.ClientSession()
@@ -18,6 +15,12 @@ async def search(query: str):
         },ssl=sslcontext)
 
     anime = await response.json()
+    print(anime)
+    if "error" in anime: #Bad request
+        return [2]
+    if "data" in anime:
+        if len(anime["data"]) == 0: #No results found
+            return [1]
     id = anime["data"][0]["node"]["id"]
     
     response2 = await session.get(url=f"https://api.myanimelist.net/v2/anime/{id}?fields=genres", headers = {
@@ -25,13 +28,11 @@ async def search(query: str):
         },ssl=sslcontext)
 
     genres = await response2.json()
-
-    print(anime["data"][0]["node"])
-    print(genres["genres"])
-    
+    title = anime["data"][0]["node"]["title"]
+    genre_list = []
+    for genre in genres["genres"]:
+        genre_list.append(genre["name"])
+    response.close()
+    response2.close()
     await session.close()
-
-if __name__ ==  '__main__':
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
-    loop.run_until_complete(search(sys.argv[1]))
+    return 0, title, genre_list

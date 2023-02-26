@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="padding-top: 20px;">
+    <div align="center" style="vertical-align: top;">
+        <img src="../static/aniME!_large.png" alt="aniME!" style="padding-bottom: 20px; width: 500px; height: auto;">
+        <br></br>
+        <p style="font-family: 'Wild Words Roman'; font-size: 20px">Input your anime below.</p>
+    </div>
+    <div align="center" style="font-family: 'Wild Words Roman'; font-size: 20px;">
+        {% if show_results %}
+            {% if results_found %}
+                <span>Is this the right anime? -></span> <span style="color: blue">{{ title }}</span>
+            {% elif bad_request %}
+                <p style="color: red">Error: Bad Request.</p>
+            {% else %}
+                <p style="color: red">No results were found for {{ title }}</p>
+            {% endif %}
+        {% endif %}
+    </div>
+    <form method="POST">
+        <input type="text" name="text">
+        <input type="submit" name="submit">
+    </form>
+    
+</div>
+
+<footer>
+    <div class="footer-links">
+        <a href="#">Link 1</a>
+        <a href="#">Link 2</a>
+        <a href="#">Link 3</a>
+    </div>
+    <div class="footer-text">
+        &copy; 2023 My Company. All rights reserved.
+    </div>
+</footer>
+  
+
+{% endblock content %}

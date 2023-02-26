@@ -1,0 +1,81 @@
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto;
+  width: 300px;
+  font-family: Arial, sans-serif;
+}
+
+input[type="text"] {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  font-size: 16px;
+}
+
+input[type="submit"] {
+  background-color: #4CAF50;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: transparent;
+}
+
+.logo img {
+  height: 50px;
+}
+
+ul {
+  display: flex;
+  list-style-type: none;
+}
+
+li {
+  margin-right: 20px;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #888;
+}
+
+body {
+  background: linear-gradient(to bottom right, #4286f4, #6fa5f5);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@font-face {
+  font-family: "Wild Words Roman";
+  src: url("../CC\ Wild\ Words\ Roman.ttf");
+}
+@font-face {
+  font-family: "Righteous";
+  src: url("../Righteous.ttf");
+}
