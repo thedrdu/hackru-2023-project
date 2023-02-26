@@ -20,6 +20,7 @@ async def form_post():
     else:
         title = request.form.get("title")
         #add to the db at this point
+        # return render_template("index.html", show_results=False)
         return 'Title received: {}'.format(title)
 
 @app.route("/about")
