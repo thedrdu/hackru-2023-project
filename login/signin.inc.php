@@ -10,27 +10,21 @@ if ( isset($_POST["submit"])){
     require "./portalConn.php";
     require "./func.php";
 
-    if ( signupInputEmpty($user_email, $user_name, $pwd, $pwdRepeat) !== false ){
-        header("location: ./signup.php?error=noInput");
+    if ( signinInputEmpty($user_email, $pwd) !== false ){
+        header("location: ./signin.php?error=noInput");
         exit();
 
 
     } 
 
-    if ( samePWD($pwd, $pwdRepeat) !== false ){
-        header("location: ./signup.php?error=notSamePWD");
-        exit();
-
-
-    } 
-    if ( existsEmail($connection, $user_email) !== false ){
-        header("location: ./signup.php?error=emailExists");
+    if ( existsEmail($connection, $user_email) === false ){
+        header("location: ./signin.php?error=emailExists");
         exit();
 
 
     }
 
-    loginUser($connection, $user_email, $user_name, $pwd);
+    loginUser($connection, $user_email,$pwd);
     exit();
 
 }

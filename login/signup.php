@@ -77,7 +77,7 @@
                   echo "<p>Something unexpected happened, please try again!</p>";
                 } else if ($_GET["error"] == "none") {
                   echo "</br>";
-                  echo "<p>Success! your information is being verified!</p>";
+                  echo "<p>Success! Please sign in with new Information!</p>";
                 }
               }
 

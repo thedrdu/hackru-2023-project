@@ -56,19 +56,16 @@
                                 if ($_GET["error"] == "noInput") {
                                     echo "</br>";
                                     echo "<p>Please ensure all fields are filled before proceedig!</p>";
-                                } else if ($_GET["error"] == "emailNotExist") {
+                                } else if ($_GET["error"] == "emailExists") {
                                     echo "</br>";
                                     echo "<p>An account with this email does not exist!<p>";
-                                } else if ($_GET["error"] == "wrongPassword") {
+                                } else if ($_GET["error"] == "notSamePwd") {
                                     echo "</br>";
                                     echo "<p>Please check your password!</p>";
-                                } else if ($_GET["error"] == "notValidated") {
-                                    echo "</br>";
-                                    echo "<p>Please wait for your account to be validated!</p>";
                                 } else if ($_GET["error"] == "stmtFailed") {
                                     echo "</br>";
                                     echo "<p>Something unexpected happened, please try again!</p>";
-                                }
+                                } 
                             }
 
                             ?>

@@ -83,11 +83,9 @@ function existsEmail($connection, $user_email){
 
 }
 
+function createUserLog($connection, $user_email, $pwd){
 
-
-function createUserLog($connection, $user_email, $user_name){
-
-    $query = "INSERT INTO userLog (userEmail, userName) VALUES (?, ?);";
+    $query = "INSERT INTO userLog (userEmail, Pwd) VALUES (?, ?);";
 
     $stmt = mysqli_stmt_init($connection);
     if ( !mysqli_stmt_prepare($stmt, $query)){
@@ -101,15 +99,9 @@ function createUserLog($connection, $user_email, $user_name){
     mysqli_stmt_close($stmt);
 }
 
-
-function loginUser($connection, $user_email, $user_name,  $pwd){
+function loginUser($connection, $user_email, $pwd){
 
     $exist_email = existsEmail($connection, $user_email);
-
-    if ( $exist_email === false ){
-        header("location: ./signin.php?error=emailNotExist");
-        exit();
-    }
 
     $hashedPassword = $exist_email["userPwd"];
     $checkedPWD = password_verify($pwd, $hashedPassword);
@@ -122,8 +114,8 @@ function loginUser($connection, $user_email, $user_name,  $pwd){
         $_SESSION["userEmail"] = $exist_email["userEmail"];
 
        
-        createUserLog($connection, $user_email, $user_name);
-        header("location: ../index.php");
+        createUserLog($connection, $user_email, $pwd);
+        header("Location: /templates/index.html");
         exit();  
 
     }
