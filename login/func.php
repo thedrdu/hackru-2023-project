@@ -94,7 +94,7 @@ function createUserLog($connection, $user_email, $pwd){
     }
 
     
-    mysqli_stmt_bind_param($stmt, "ss", $user_email, $user_name);
+    mysqli_stmt_bind_param($stmt, "ss", $user_email, $pwd);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 }
@@ -115,7 +115,7 @@ function loginUser($connection, $user_email, $pwd){
 
        
         createUserLog($connection, $user_email, $pwd);
-        header("Location: /templates/index.html");
+        header("Location:  http://localhost:5001/AniMe");
         exit();  
 
     }
